@@ -1,7 +1,7 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 //!const bcrypt = require('bcrypt');
 
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
 //creo Schema
 const userSchema = new Schema(
@@ -14,6 +14,7 @@ const userSchema = new Schema(
       minlength: [5, 'Contraseña con mínimo 5 carácteres'],
       required: true
     },
+    image: { type: String, trim: true },
     role: {
       type: String,
       required: true,
@@ -32,7 +33,7 @@ const userSchema = new Schema(
     timestamps: true,
     collections: 'users'
   }
-)
+);
 
 //hashear el password usando bcrypt
 /* userSchema.pre('save', function (next) {
@@ -45,6 +46,6 @@ const userSchema = new Schema(
 }) */
 
 //creo modelo
-const User = mongoose.model('users', userSchema, 'users')
+const User = mongoose.model('users', userSchema, 'users');
 
-module.exports = User
+module.exports = User;

@@ -1,6 +1,6 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
 const speciesSchema = new Schema(
   {
@@ -10,21 +10,22 @@ const speciesSchema = new Schema(
     rarity: {
       type: String,
       enum: ['común', 'poco común', 'raro', 'legendario'],
-      required: true,
-      location: { type: String },
-      depth: { type: String },
-      season: {},
-      habitat: {},
-      curiousFact: /* comments user? */ {}.name
+      required: true
     },
+    location: { type: mongoose.Types.ObjectId, ref: 'spots' }, //!
+    depth: { type: String },
+    season: {},
+    habitat: {},
+    curiousFact: {},
+    comments: { type: mongoose.Types.ObjectId, ref: 'comments' }, //!comments user
     image: { type: String, trim: true }
   },
   {
     timestamps: true,
     collections: 'species'
   }
-)
+);
 
-const Species = mongoose.model('species', speciesSchema, 'species')
+const Species = mongoose.model('species', speciesSchema, 'species');
 
-module.exports = Species
+module.exports = Species;
