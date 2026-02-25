@@ -1,5 +1,4 @@
-//!PENDIENTE IMPORTAR MIDDLEWARE
-
+const { isAdmin } = require('../../middlewares/isAuth');
 const {
   getCourses,
   updateCourse,

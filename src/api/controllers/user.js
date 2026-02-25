@@ -1,25 +1,56 @@
-//getUsers
+const User = require('../models/User');
+
+//*GET
 const getUsers = async (req, res, next) => {
   try {
-  } catch (error) {}
+    const users = await User.find();
+    return res.status(200).json(users);
+  } catch (error) {
+    next(error);
+  }
 };
 
-//getUserById
+//*GET BY ID
 const getUserById = async (req, res, next) => {
+  const id = req.params.id;
   try {
-  } catch (error) {}
+    const user = await User.findById(id);
+    if (user) {
+      return res.status(200).json(user);
+    }
+  } catch (error) {
+    next(error);
+  }
 };
 
-//updateUser
+//*PUT
 const updateUser = async (req, res, next) => {
   try {
-  } catch (error) {}
+    const { id } = req.params;
+    const modifiedUser = new User(req.body);
+    modifiedUser._id = id;
+    const updatedUser = await User.findByIdAndUpdate(id, modifiedUser, {
+      new: true
+    });
+    return res.status(200).json(updatedUser);
+  } catch (error) {
+    next(error);
+  }
 };
 
-//deleteUser
+//*DELETE
 const deleteUser = async (req, res, next) => {
   try {
-  } catch (error) {}
+    const { id } = req.params;
+    //!falta check si eres admin
+    const deletedUser = await User.findByIdAndDelete(id);
+    return res.status(200).json({
+      message: 'User deleted successfully',
+      user: deletedUser
+    });
+  } catch (error) {
+    next(error);
+  }
 };
 
 module.exports = {

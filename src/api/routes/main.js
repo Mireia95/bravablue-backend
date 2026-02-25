@@ -1,5 +1,3 @@
-//!PENDIENTE IMPORTAR Router
-
 const authRouter = require('./auth');
 const commentsRouter = require('./comment');
 const coursesRouter = require('./course');

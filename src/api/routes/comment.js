@@ -1,5 +1,4 @@
-//!PENDIENTE IMPORTAR MIDDLEWARE
-
+const { isAuth } = require('../../middlewares/isAuth');
 const { createComment, deleteComment } = require('../controllers/comment');
 
 const commentsRouter = require('express').Router();

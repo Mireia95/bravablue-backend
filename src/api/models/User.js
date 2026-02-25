@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-//!const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 
 const Schema = mongoose.Schema;
 
@@ -11,7 +11,7 @@ const userSchema = new Schema(
     password: {
       type: String,
       trim: true,
-      minlength: [5, 'Contraseña con mínimo 5 carácteres'],
+      minlength: [5, 'Password 5 characters minimum'],
       required: true
     },
     image: { type: String, trim: true },
@@ -36,14 +36,14 @@ const userSchema = new Schema(
 );
 
 //hashear el password usando bcrypt
-/* userSchema.pre('save', function (next) {
+userSchema.pre('save', function (next) {
   //ATENCION: asi cada vez que se usa User.save() hashea el password de nuevo
   //posible error en hacer login despues
   //solucion: añadir esta linea de código:
-  if (!this.isModified('password')) return next()
-  this.password = bcrypt.hashSync(this.password, 10)
-  next()
-}) */
+  if (!this.isModified('password')) return next();
+  this.password = bcrypt.hashSync(this.password, 10);
+  next();
+});
 
 //creo modelo
 const User = mongoose.model('users', userSchema, 'users');
