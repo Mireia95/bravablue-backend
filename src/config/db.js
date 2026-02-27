@@ -3,9 +3,9 @@ const mongoose = require('mongoose')
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.DB_URL)
-    console.log('Conectado con éxito a la BBDD. ✅')
+    console.log('Successfully connected to the BBDD. ✅')
   } catch (error) {
-    console.log('Error conexión con la BBDD. ❌')
+    console.log('Connection to BBDD failed. ❌')
     console.error(error)
   }
 }

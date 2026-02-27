@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 
 const trophySchema = new Schema(
   {
-    image: { type: String, trim: true },
+    icon: { type: String, trim: true, required: true },
     title: { type: String, required: true },
     description: { type: String, required: true }
   },

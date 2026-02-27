@@ -1,16 +1,16 @@
-const { isAdmin } = require('../../middlewares/isAuth');
+const { isAdmin } = require('../../middlewares/isAuth')
 const {
   getTrophies,
   updateTrophy,
   createTrophy,
   deleteTrophy
-} = require('../controllers/trophy');
+} = require('../controllers/trophy')
 
-const trophiesRouter = require('express').Router();
+const trophiesRouter = require('express').Router()
 
-trophiesRouter.get('/', getTrophies);
-trophiesRouter.put('/:id', isAdmin, updateTrophy);
-trophiesRouter.post('/', isAdmin, createTrophy);
-trophiesRouter.delete('/:id', isAdmin, deleteTrophy);
+trophiesRouter.get('/', getTrophies)
+trophiesRouter.put('/:id', isAdmin, upload.single('image'), updateTrophy)
+trophiesRouter.post('/', isAdmin, upload.single('image'), createTrophy)
+trophiesRouter.delete('/:id', isAdmin, deleteTrophy)
 
-module.exports = trophiesRouter;
+module.exports = trophiesRouter
