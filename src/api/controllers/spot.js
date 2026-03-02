@@ -44,7 +44,6 @@ const updateSpot = async (req, res, next) => {
 const deleteSpot = async (req, res, next) => {
   try {
     const { id } = req.params
-    //!falta check si eres user o admin
     const deletedSpot = await Spot.findByIdAndDelete(id)
 
     //elimino imagen en Cloudinary

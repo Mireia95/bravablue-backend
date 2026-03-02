@@ -12,8 +12,18 @@ const getUsers = async (req, res, next) => {
 
 //*GET BY ID
 const getUserById = async (req, res, next) => {
-  const id = req.params.id
   try {
+    const id = req.params.id
+    const idUser = req.user.id
+    //!permission: admin || logged user que busca a si mismo
+    if (req.user.role !== 'admin') {
+      if (idUser !== id) {
+        const error = new Error('Pemrission denied')
+        error.status = 403
+        next(error)
+      }
+    }
+
     const user = await User.findById(id)
     if (user) {
       return res.status(200).json(user)
@@ -42,7 +52,7 @@ const updateUser = async (req, res, next) => {
 const deleteUser = async (req, res, next) => {
   try {
     const { id } = req.params
-    //!falta check si eres admin
+    //!falta check si eres admin o el user
     const deletedUser = await User.findByIdAndDelete(id)
 
     //elimino imagen en Cloudinary

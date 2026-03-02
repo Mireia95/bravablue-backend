@@ -44,7 +44,6 @@ const updateTrophy = async (req, res, next) => {
 const deleteTrophy = async (req, res, next) => {
   try {
     const { id } = req.params
-    //!falta check si eres admin
     const deletedTrophy = await Trophy.findByIdAndDelete(id)
 
     //elimino imagen en Cloudinary

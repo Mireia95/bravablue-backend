@@ -62,7 +62,6 @@ const updateSpecies = async (req, res, next) => {
 const deleteSpecies = async (req, res, next) => {
   try {
     const { id } = req.params
-    //!falta check si eres user o admin
     const deletedSpecies = await Species.findByIdAndDelete(id)
 
     //elimino imagen en Cloudinary
