@@ -1,6 +1,6 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
 const commentSchema = new Schema(
   {
@@ -9,6 +9,7 @@ const commentSchema = new Schema(
     image: { type: String, trim: true },
     user: { type: mongoose.Types.ObjectId, ref: 'users', required: true },
     species: { type: mongoose.Types.ObjectId, ref: 'species', required: true },
+    area: { type: mongoose.Types.ObjectId, ref: 'areas', required: true },
     location: { type: mongoose.Types.ObjectId, ref: 'spots' },
     state: { type: String, enum: ['public, private'] }
   },
@@ -16,8 +17,8 @@ const commentSchema = new Schema(
     timestamps: true,
     collections: 'movies'
   }
-)
+);
 
-const Comment = mongoose.model('comments', commentSchema, 'comments')
+const Comment = mongoose.model('comments', commentSchema, 'comments');
 
-module.exports = Comment
+module.exports = Comment;

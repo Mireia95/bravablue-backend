@@ -1,3 +1,4 @@
+const areasRouter = require('./area');
 const authRouter = require('./auth');
 const commentsRouter = require('./comment');
 const coursesRouter = require('./course');
@@ -10,6 +11,7 @@ const mainRouter = require('express').Router();
 
 mainRouter.use('/comments', commentsRouter);
 mainRouter.use('/courses', coursesRouter);
+mainRouter.use('/areas', areasRouter);
 mainRouter.use('/species', speciesRouter);
 mainRouter.use('/spots', spotsRouter);
 mainRouter.use('/trophies', trophiesRouter);
