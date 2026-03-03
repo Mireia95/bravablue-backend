@@ -27,7 +27,7 @@ const createComment = async (req, res, next) => {
 const deleteComment = async (req, res, next) => {
   try {
     const { id } = req.params
-    //!falta check si eres user o admin
+
     const deletedComment = await Comment.findByIdAndDelete(id)
 
     //elimino imagen

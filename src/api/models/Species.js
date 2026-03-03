@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema
 
 const speciesSchema = new Schema(
   {
@@ -13,10 +13,14 @@ const speciesSchema = new Schema(
       required: true
     },
     location: { type: mongoose.Types.ObjectId, ref: 'spots' }, //!
-    depth: { type: String },
-    season: {},
-    habitat: {},
-    curiousFact: {},
+    season: { type: String },
+    habitat: { type: String },
+    activity: {
+      type: String,
+      enum: ['diurno', 'nocturno', 'siempre'],
+      required: true
+    },
+    curiousFact: { type: String },
     comments: { type: mongoose.Types.ObjectId, ref: 'comments' }, //!comments user
     image: { type: String, trim: true }
   },
@@ -24,8 +28,8 @@ const speciesSchema = new Schema(
     timestamps: true,
     collections: 'species'
   }
-);
+)
 
-const Species = mongoose.model('species', speciesSchema, 'species');
+const Species = mongoose.model('species', speciesSchema, 'species')
 
-module.exports = Species;
+module.exports = Species

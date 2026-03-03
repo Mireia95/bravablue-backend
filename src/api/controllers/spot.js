@@ -16,6 +16,11 @@ const getSpots = async (req, res, next) => {
 const createSpot = async (req, res, next) => {
   try {
     const newSpot = new Spot(req.body)
+
+    if (req.file) {
+      newSpot.image = req.file.path
+    }
+
     const createdSpot = await newSpot.save()
     return res
       .status(201)
@@ -31,6 +36,13 @@ const updateSpot = async (req, res, next) => {
     const { id } = req.params
     const modifiedSpot = new Spot(req.body)
     modifiedSpot._id = id
+
+    if (req.file) {
+      modifiedSpot.image = req.file.path
+      const oldSpot = await Spot.findById(id)
+      oldSpot.image ? deleteFileCloudinary(oldSpot.image) : null
+    }
+
     const updatedSpot = await Spot.findByIdAndUpdate(id, modifiedSpot, {
       new: true
     })

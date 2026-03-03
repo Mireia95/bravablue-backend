@@ -16,6 +16,11 @@ const getTrophies = async (req, res, next) => {
 const createTrophy = async (req, res, next) => {
   try {
     const newTrophy = new Trophy(req.body)
+
+    if (req.file) {
+      newTrophy.icon = req.file.path
+    }
+
     const createdTrophy = await newTrophy.save()
     return res
       .status(201)
@@ -31,6 +36,13 @@ const updateTrophy = async (req, res, next) => {
     const { id } = req.params
     const modifiedTrophy = new Trophy(req.body)
     modifiedTrophy._id = id
+
+    if (req.file) {
+      modifiedTrophy.image = req.file.path
+      const oldTrophy = await Spot.findById(id)
+      oldTrophy.image ? deleteFileCloudinary(oldTrophy.image) : null
+    }
+
     const updatedTrophy = await Trophy.findByIdAndUpdate(id, modifiedTrophy, {
       new: true
     })

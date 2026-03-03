@@ -13,7 +13,7 @@ const deleteFileCloudinary = (filePath) => {
 
   //eliminamos la imagen de cloudinary
   cloudinary.uploader.destroy(public_id, () => {
-    console.log('Imagen eliminada de Cloudinary')
+    console.log('File deleted in Cloudinary')
   })
 }
 

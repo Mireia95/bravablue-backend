@@ -29,7 +29,13 @@ const getSpeciesById = async (req, res, next) => {
 const createSpecies = async (req, res, next) => {
   try {
     const newSpecies = new Species(req.body)
+
+    if (req.file) {
+      newSpecies.image = req.file.path
+    }
+
     const createdSpecies = await newSpecies.save()
+
     return res.status(201).json({
       message: 'Species created successfully',
       species: createdSpecies
@@ -43,8 +49,22 @@ const createSpecies = async (req, res, next) => {
 const updateSpecies = async (req, res, next) => {
   try {
     const { id } = req.params
+    const oldSpecies = await Species.findById(id)
     const modifiedSpecies = new Species(req.body)
     modifiedSpecies._id = id
+
+    //aseguro que los datos array [] no den undefined
+    const location = req.body.location || []
+    const comments = req.body.comments || []
+    modifiedSpecies.location = [...oldSpecies.location, ...location]
+    modifiedSpecies.comments = [...oldSpecies.comments, ...comments]
+
+    if (req.file) {
+      modifiedSpecies.image = req.file.path
+
+      oldSpecies.image ? deleteFileCloudinary(oldSpecies.image) : null
+    }
+
     const updatedSpecies = await Species.findByIdAndUpdate(
       id,
       modifiedSpecies,

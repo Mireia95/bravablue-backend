@@ -1,3 +1,4 @@
+const { deleteFileCloudinary } = require('../../utils/deleteFileCloudinary')
 const User = require('../models/User')
 
 //*GET
@@ -37,8 +38,24 @@ const getUserById = async (req, res, next) => {
 const updateUser = async (req, res, next) => {
   try {
     const { id } = req.params
+    const oldUser = await Spot.findById(id)
     const modifiedUser = new User(req.body)
     modifiedUser._id = id
+
+    //aseguro que los datos array [] no den undefined
+    const species = req.body.species || []
+    const comments = req.body.comments || []
+    const trophies = req.body.trophies || []
+    modifiedUser.species = [...oldUser.species, ...species]
+    modifiedUser.comments = [...oldUser.comments, ...comments]
+    modifiedUser.trophies = [...oldUser.trophies, ...trophies]
+
+    if (req.file) {
+      modifiedUser.image = req.file.path
+
+      oldUser.image ? deleteFileCloudinary(oldUser.image) : null
+    }
+
     const updatedUser = await User.findByIdAndUpdate(id, modifiedUser, {
       new: true
     })
@@ -52,11 +69,11 @@ const updateUser = async (req, res, next) => {
 const deleteUser = async (req, res, next) => {
   try {
     const { id } = req.params
-    //!falta check si eres admin o el user
+
     const deletedUser = await User.findByIdAndDelete(id)
 
     //elimino imagen en Cloudinary
-    deletedUser.icon ? deleteFileCloudinary(deletedUser.image) : null
+    deletedUser.image ? deleteFileCloudinary(deletedUser.image) : null
 
     return res.status(200).json({
       message: 'User deleted successfully',
