@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "areasSeed": "node ./src/utils/seeds/areas.seed.js",
+    "speciesSeed": "node ./src/utils/seeds/species.seed.js",
+    "spotsSeed": "node ./src/utils/seeds/spots.seed.js",
+    "trophiesSeed": "node ./src/utils/seeds/trophies.seed.js"
   },
   "keywords": [],
   "author": "",

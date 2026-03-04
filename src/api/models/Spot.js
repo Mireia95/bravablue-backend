@@ -1,11 +1,11 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema
 
 const spotSchema = new Schema(
   {
+    name: { type: String, required: true },
     image: { type: String, trim: true },
-    location: { type: String, required: true },
     area: { type: mongoose.Types.ObjectId, ref: 'areas' },
     description: { type: String, required: true },
     difficulty: {
@@ -17,8 +17,8 @@ const spotSchema = new Schema(
     timestamps: true,
     collections: 'spots'
   }
-);
+)
 
-const Spot = mongoose.model('spots', spotSchema, 'spots');
+const Spot = mongoose.model('spots', spotSchema, 'spots')
 
-module.exports = Spot;
+module.exports = Spot

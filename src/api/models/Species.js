@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema
 
 const speciesSchema = new Schema(
   {
@@ -12,13 +12,15 @@ const speciesSchema = new Schema(
       enum: ['común', 'poco común', 'raro', 'legendario'],
       required: true
     },
-    location: { type: mongoose.Types.ObjectId, ref: 'areas' },
-    season: { type: String },
+    area: { type: mongoose.Types.ObjectId, ref: 'areas' },
+    season: {
+      type: String,
+      enum: ['primavera', 'verano', 'otoño', 'invierno', 'todo el año']
+    },
     habitat: { type: String },
     activity: {
       type: String,
-      enum: ['diurno', 'nocturno', 'siempre'],
-      required: true
+      enum: ['diurno', 'nocturno', 'cualquier hora']
     },
     curiousFact: { type: String },
     comments: { type: mongoose.Types.ObjectId, ref: 'comments' },
@@ -28,8 +30,8 @@ const speciesSchema = new Schema(
     timestamps: true,
     collections: 'species'
   }
-);
+)
 
-const Species = mongoose.model('species', speciesSchema, 'species');
+const Species = mongoose.model('species', speciesSchema, 'species')
 
-module.exports = Species;
+module.exports = Species
