@@ -50,8 +50,8 @@ const trophies = [
     description: 'Colecciona todas las especies'
   },
   {
-    icon: '',
-    title: 'Ganador',
+    icon: 'https://res.cloudinary.com/dr2vohk2z/image/upload/v1773229401/bravablue/Trophy/Ganador_hw0zlq.svg',
+    title: 'Leyenda del Océano',
     description: 'Colecciona todos los trofeos'
   }
 ]
