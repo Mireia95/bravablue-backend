@@ -1,17 +1,17 @@
 const areas = [
-  { name: "L'Escala" },
-  { name: 'Begur' },
-  { name: 'Llançá' },
-  { name: 'Sant Feliu de Guíxols' },
-  { name: 'Lloret de Mar' },
-  { name: 'Sant Antoni de Calonge' },
-  { name: 'Tossa de Mar' },
-  { name: 'Cadaqués' },
-  { name: 'Roses' },
-  { name: 'Cap de Creus' },
-  { name: 'Palamós' },
-  { name: 'Llafranc' },
-  { name: 'Costa Brava' }
+  { name: "L'Escala", spots: [] },
+  { name: 'Begur', spots: [] },
+  { name: 'Llançá', spots: [] },
+  { name: 'Sant Feliu de Guíxols', spots: [] },
+  { name: 'Lloret de Mar', spots: [] },
+  { name: 'Sant Antoni de Calonge', spots: [] },
+  { name: 'Tossa de Mar', spots: [] },
+  { name: 'Cadaqués', spots: [] },
+  { name: 'Roses', spots: [] },
+  { name: 'Cap de Creus', spots: [] },
+  { name: 'Palamós', spots: [] },
+  { name: 'Llafranc', spots: [] },
+  { name: 'Costa Brava', spots: [] }
 ]
 
 module.exports = areas

@@ -12,18 +12,20 @@ const speciesSchema = new Schema(
       enum: ['común', 'poco común', 'raro', 'legendario'],
       required: true
     },
-    area: { type: mongoose.Types.ObjectId, ref: 'areas' },
-    season: {
-      type: String,
-      enum: ['primavera', 'verano', 'otoño', 'invierno', 'todo el año']
-    },
+    area: [{ type: mongoose.Types.ObjectId, ref: 'areas' }],
+    season: [
+      {
+        type: String,
+        enum: ['primavera', 'verano', 'otoño', 'invierno', 'todo el año']
+      }
+    ],
     habitat: { type: String },
     activity: {
       type: String,
       enum: ['diurno', 'nocturno', 'cualquier hora']
     },
     curiousFact: { type: String },
-    comments: { type: mongoose.Types.ObjectId, ref: 'comments' },
+    comments: [{ type: mongoose.Types.ObjectId, ref: 'comments' }],
     image: { type: String, trim: true }
   },
   {

@@ -6,7 +6,6 @@ const spotSchema = new Schema(
   {
     name: { type: String, required: true },
     image: { type: String, trim: true },
-    area: { type: mongoose.Types.ObjectId, ref: 'areas' },
     description: { type: String, required: true },
     difficulty: {
       type: String,
