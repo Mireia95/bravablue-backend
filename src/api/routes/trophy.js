@@ -6,6 +6,7 @@ const {
   deleteTrophy
 } = require('../controllers/trophy')
 
+const { upload } = require('../../middlewares/file')
 const trophiesRouter = require('express').Router()
 
 trophiesRouter.get('/', getTrophies)

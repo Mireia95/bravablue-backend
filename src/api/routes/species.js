@@ -6,7 +6,7 @@ const {
   createSpecies,
   deleteSpecies
 } = require('../controllers/species')
-
+const { upload } = require('../../middlewares/file')
 const speciesRouter = require('express').Router()
 
 speciesRouter.get('/:id', getSpeciesById)

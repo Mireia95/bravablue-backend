@@ -1,6 +1,7 @@
 const { isAuth, isAdmin, isOwnerOrAdmin } = require('../../middlewares/isAuth')
 const { getUserById, getUsers, deleteUser } = require('../controllers/user')
 const User = require('../models/User')
+const { upload } = require('../../middlewares/file')
 
 const usersRouter = require('express').Router()
 

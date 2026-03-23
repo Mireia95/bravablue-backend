@@ -5,6 +5,7 @@ const {
   createSpot,
   deleteSpot
 } = require('../controllers/spot')
+const { upload } = require('../../middlewares/file')
 
 const spotsRouter = require('express').Router()
 
