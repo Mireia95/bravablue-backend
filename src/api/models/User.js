@@ -22,8 +22,7 @@ const userSchema = new Schema(
       default: 'user'
     },
     birthday: {
-      type: Date,
-      required: true
+      type: Date
     },
     species: [{ type: mongoose.Types.ObjectId, ref: 'species' }],
     comments: [{ type: mongoose.Types.ObjectId, ref: 'comments' }],
@@ -35,14 +34,18 @@ const userSchema = new Schema(
   }
 );
 
-//hashear el password usando bcrypt
+//!hashear el password usando bcrypt
 userSchema.pre('save', function (next) {
   //ATENCION: asi cada vez que se usa User.save() hashea el password de nuevo
   //posible error en hacer login despues
   //solucion: añadir esta linea de código:
-  if (!this.isModified('password')) return next();
-  this.password = bcrypt.hashSync(this.password, 10);
-  next();
+  try {
+    /* if (!this.isModified('password')) return next(); */
+    this.password = bcrypt.hashSync(this.password, 10);
+    next();
+  } catch (error) {
+    next(error);
+  }
 });
 
 //creo modelo
