@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+const mongoose = require('mongoose')
+const bcrypt = require('bcrypt')
 
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema
 
 //creo Schema
 const userSchema = new Schema(
@@ -32,23 +32,22 @@ const userSchema = new Schema(
     timestamps: true,
     collections: 'users'
   }
-);
+)
 
-//!hashear el password usando bcrypt
-userSchema.pre('save', function (next) {
-  //ATENCION: asi cada vez que se usa User.save() hashea el password de nuevo
-  //posible error en hacer login despues
-  //solucion: añadir esta linea de código:
+// hashear el password usando bcrypt
+//con Mongoose 9 no uso next() porque da error
+userSchema.pre('save', async function () {
+  // Si el password no ha cambiado, salimos de la función
+  if (!this.isModified('password')) return
   try {
-    /* if (!this.isModified('password')) return next(); */
-    this.password = bcrypt.hashSync(this.password, 10);
-    next();
+    const salt = await bcrypt.genSalt(10)
+    this.password = await bcrypt.hash(this.password, salt)
   } catch (error) {
-    next(error);
+    throw error
   }
-});
+})
 
 //creo modelo
-const User = mongoose.model('users', userSchema, 'users');
+const User = mongoose.model('users', userSchema, 'users')
 
-module.exports = User;
+module.exports = User

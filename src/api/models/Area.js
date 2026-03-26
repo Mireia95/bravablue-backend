@@ -5,7 +5,7 @@ const Schema = mongoose.Schema
 const areaSchema = new Schema(
   {
     name: { type: String, required: true },
-    spots: [{ type: mongoose.Types.ObjectId, ref: 'Spot' }]
+    spots: [{ type: mongoose.Types.ObjectId, ref: 'spots' }]
   },
   {
     timestamps: true,
