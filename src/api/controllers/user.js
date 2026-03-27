@@ -16,16 +16,19 @@ const getUserById = async (req, res, next) => {
   try {
     const id = req.params.id;
     const idUser = req.user.id;
-    //!permission: admin || logged user que busca a si mismo
+    //permission: admin || logged user que busca a si mismo
     if (req.user.role !== 'admin') {
       if (idUser !== id) {
-        const error = new Error('Pemrission denied');
+        const error = new Error('Permission denied');
         error.status = 403;
         return next(error);
       }
     }
 
-    const user = await User.findById(id);
+    const user = await User.findById(id)
+      .populate('species')
+      .poopulate('trophies');
+
     if (!user) {
       const error = new Error('User not found');
       error.status = 404;

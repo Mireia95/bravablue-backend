@@ -1,18 +1,22 @@
-const { isAdmin } = require('../../middlewares/isAuth')
+const { isAdmin } = require('../../middlewares/isAuth');
 const {
   getSpecies,
   getSpeciesById,
   updateSpecies,
   createSpecies,
-  deleteSpecies
-} = require('../controllers/species')
-const { upload } = require('../../middlewares/file')
-const speciesRouter = require('express').Router()
+  deleteSpecies,
+  getSpeciesByArea,
+  getSpeciesByRarity
+} = require('../controllers/species');
+const { upload } = require('../../middlewares/file');
+const speciesRouter = require('express').Router();
 
-speciesRouter.get('/:id', getSpeciesById)
-speciesRouter.get('/', getSpecies)
-speciesRouter.put('/:id', isAdmin, upload.single('image'), updateSpecies)
-speciesRouter.post('/', isAdmin, upload.single('image'), createSpecies)
-speciesRouter.delete('/:id', isAdmin, deleteSpecies)
+speciesRouter.get('/:id', getSpeciesById);
+speciesRouter.get('/getByArea/:area', getSpeciesByArea);
+speciesRouter.get('/getByRarity/:rarity', getSpeciesByRarity);
+speciesRouter.get('/', getSpecies);
+speciesRouter.put('/:id', isAdmin, upload.single('image'), updateSpecies);
+speciesRouter.post('/', isAdmin, upload.single('image'), createSpecies);
+speciesRouter.delete('/:id', isAdmin, deleteSpecies);
 
-module.exports = speciesRouter
+module.exports = speciesRouter;

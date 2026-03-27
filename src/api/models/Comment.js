@@ -10,12 +10,12 @@ const commentSchema = new Schema(
     user: { type: mongoose.Types.ObjectId, ref: 'users', required: true },
     species: { type: mongoose.Types.ObjectId, ref: 'species', required: true },
     area: { type: mongoose.Types.ObjectId, ref: 'areas', required: true },
-    location: { type: mongoose.Types.ObjectId, ref: 'spots' },
+    spot: { type: mongoose.Types.ObjectId, ref: 'spots' },
     state: { type: String, enum: ['public, private'] }
   },
   {
     timestamps: true,
-    collections: 'movies'
+    collections: 'comments'
   }
 );
 
