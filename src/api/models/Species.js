@@ -6,6 +6,11 @@ const speciesSchema = new Schema(
   {
     name: { type: String, required: true },
     latinName: { type: String, required: true },
+    category: {
+      type: String,
+      enum: ['molusco', 'crustáceo', 'pez', 'cnidario', 'equinodermo'],
+      required: true
+    },
     description: { type: String, required: true },
     rarity: {
       type: String,
