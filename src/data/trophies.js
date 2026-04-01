@@ -27,7 +27,12 @@ const trophies = [
   {
     icon: 'https://res.cloudinary.com/dr2vohk2z/image/upload/v1772457166/bravablue/Trophy/EspirituDelMediterraneo_slglu5.svg',
     title: 'Espíritu del Mediterráneo',
-    description: 'Colecciona 20 especies diferentes'
+    description: 'Colecciona 30 especies diferentes'
+  },
+  {
+    icon: 'https://res.cloudinary.com/dr2vohk2z/image/upload/v1772457167/bravablue/Trophy/ObservadorProfesional_iboczx.svg',
+    title: 'Observador profesional',
+    description: 'Colecciona 50 especies diferentes'
   },
   {
     icon: 'https://res.cloudinary.com/dr2vohk2z/image/upload/v1772457166/bravablue/Trophy/CazadorDeRarezas_fba8fz.svg',
@@ -54,6 +59,6 @@ const trophies = [
     title: 'Leyenda del Océano',
     description: 'Colecciona todos los trofeos'
   }
-]
+];
 
-module.exports = trophies
+module.exports = trophies;
