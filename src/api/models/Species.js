@@ -1,6 +1,6 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
 const speciesSchema = new Schema(
   {
@@ -37,8 +37,8 @@ const speciesSchema = new Schema(
     timestamps: true,
     collections: 'species'
   }
-)
+);
 
-const Species = mongoose.model('species', speciesSchema, 'species')
+const Species = mongoose.model('species', speciesSchema, 'species');
 
-module.exports = Species
+module.exports = Species;
