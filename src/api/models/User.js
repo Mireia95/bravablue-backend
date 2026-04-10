@@ -1,7 +1,7 @@
-const mongoose = require('mongoose')
-const bcrypt = require('bcrypt')
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
 //creo Schema
 const userSchema = new Schema(
@@ -14,6 +14,7 @@ const userSchema = new Schema(
       minlength: [5, 'Password 5 characters minimum'],
       required: true
     },
+    terms: { type: Boolean, required: true },
     image: { type: String, trim: true },
     role: {
       type: String,
@@ -32,22 +33,22 @@ const userSchema = new Schema(
     timestamps: true,
     collections: 'users'
   }
-)
+);
 
 // hashear el password usando bcrypt
 //con Mongoose 9 no uso next() porque da error
 userSchema.pre('save', async function () {
   // Si el password no ha cambiado, salimos de la función
-  if (!this.isModified('password')) return
+  if (!this.isModified('password')) return;
   try {
-    const salt = await bcrypt.genSalt(10)
-    this.password = await bcrypt.hash(this.password, salt)
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
   } catch (error) {
-    throw error
+    throw error;
   }
-})
+});
 
 //creo modelo
-const User = mongoose.model('users', userSchema, 'users')
+const User = mongoose.model('users', userSchema, 'users');
 
-module.exports = User
+module.exports = User;
