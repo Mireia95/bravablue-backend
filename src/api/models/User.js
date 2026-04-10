@@ -22,9 +22,6 @@ const userSchema = new Schema(
       enum: ['admin', 'user'],
       default: 'user'
     },
-    birthday: {
-      type: Date
-    },
     species: [{ type: mongoose.Types.ObjectId, ref: 'species' }],
     comments: [{ type: mongoose.Types.ObjectId, ref: 'comments' }],
     trophies: [{ type: mongoose.Types.ObjectId, ref: 'trophies' }]
